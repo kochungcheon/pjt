@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class-"text-center">DETAIL</h1>
+  <hr>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="card" style="width: 18rem;">
+      <img src="{{movie.poster_url}}" class="card-img-top" alt="exit">
+      <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">관객수: {{movie.audience}}</p>
+        <p class="card-text">출시일: {{ movie.release_date }}</p>
+        <p class="card-text">장르 : {{ movie.genre }}</p>
+        <p class="card-text">평점 : {{ movie.score }}</p>
+        <p class="card-text">{{ movie.description }}</p>
+        <p class="card-text">관객수: {{movie.audience}}</p>
+        <a href="{% url 'movies:update' movie.pk%}" class="btn btn-info">UPDATE</a>
+        <form action="{% url 'movies:delete' movie.pk %}" method="POST" CLASS="d-inline">
+          {% csrf_token %}
+          <input type="submit" value="DELETE" class="btn btn-danger">
+      </div>
+    </div>
+  </div>
+  <a href="{%url 'movies:index'%}" class="btn btn-warning">BACK</a>
+{% endblock content %}
+
